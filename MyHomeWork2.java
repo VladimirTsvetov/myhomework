@@ -1,5 +1,6 @@
+VladimirTsvetov-patch-2
 package home_work_2;
-
+//my homework#2
 public class MyHomeWork2 {
     public static void main(String[] args) {
         if(checkSumm(50,10))
@@ -58,3 +59,4 @@ public class MyHomeWork2 {
     }
 
 }
+
