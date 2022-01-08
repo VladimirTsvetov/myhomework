@@ -1,10 +1,13 @@
 package FinnyAnimales;
 
 public abstract class Animal {
-    static int count;
+    protected static int count;
     //protected String name;
     public static void addAnimalsCount(){
        ++count;
+    }
+    public static int getCount() {
+        return count;
     }
     public static void prnAnimalCount(){
         System.out.println("Всего создано " +  count + " забавных зверюшек");
