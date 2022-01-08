@@ -35,7 +35,7 @@ public class Main {
             System.out.println(e);
             System.out.println("Бобик сдох");
         }
-        System.out.println("За время эксперимента: ");
+        System.out.println("За время эксперимента было создано: " + Animal.getCount() + "  забавных зверюшек:");
         Cat.prnCatNumber();
         Dog.prnDogNumber();
 
