@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<PdsmqConfig version="4.0">
-  <UserOptIn>True</UserOptIn>
-  <AppDeployedUuid>d6a10e50-1022-420c-af13-334953d2a773</AppDeployedUuid>
-  <OnRamp>/start_app/folder_exe</OnRamp>
-</PdsmqConfig>
