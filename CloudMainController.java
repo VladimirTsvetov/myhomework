@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,7 @@ import static java.nio.file.StandardOpenOption.*;
 public class CloudMainController implements Initializable {
     public ListView<String> clientView;
     public ListView<String> serverView;
+    public PasswordField passwordField;
     private String currentDirectory;
 
     //****
@@ -43,6 +45,7 @@ public class CloudMainController implements Initializable {
 
     private DaemonThreadFactory factory;
     private static final int BATCH_SIZE = 256;
+    private String password;
 
     public void downloadFile(ActionEvent actionEvent) throws IOException {
         String fileName = serverView.getSelectionModel().getSelectedItem();
@@ -188,4 +191,8 @@ public class CloudMainController implements Initializable {
         return true;
     }
 
+    public void passConfirm(ActionEvent actionEvent) throws IOException {
+        password = passwordField.getText();
+        network.getOutputStream().writeObject(new PasswordMessage(password));
+    }
 }
