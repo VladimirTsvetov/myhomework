@@ -196,4 +196,3 @@ public class CloudMainController implements Initializable {
         network.getOutputStream().writeObject(new PasswordMessage(password));
     }
 }
-
