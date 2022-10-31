@@ -18,6 +18,13 @@ public class FileHandler extends SimpleChannelInboundHandler<CloudMessage> {
 
     private Path serverDir;
 
+    private ClientDB clientDB;
+
+    //добавляем передачу хэндлеру объекта, работающего с БД
+    public FileHandler(ClientDB clientDB) {
+        this.clientDB = clientDB;
+    }
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         channels.add(ctx.channel());
@@ -34,13 +41,22 @@ public class FileHandler extends SimpleChannelInboundHandler<CloudMessage> {
         if (cloudMessage instanceof FileMessage fileMessage) {
             Files.write(serverDir.resolve(fileMessage.getFileName()), fileMessage.getBytes());
             ctx.writeAndFlush(new ListMessage(serverDir));
-        } else if (cloudMessage instanceof FileRequest fileRequest) {
+        }
+        else if (cloudMessage instanceof FileRequest fileRequest) {
             ctx.writeAndFlush(new FileMessage(serverDir.resolve(fileRequest.getFileName())));
         }
-        if(cloudMessage instanceof FileDelete fileDelete){
+        else if(cloudMessage instanceof FileDelete fileDelete){
             Files.deleteIfExists(serverDir.resolve(fileDelete.getFileName()));
             ctx.writeAndFlush(new ListMessage(serverDir));
         }
+        //если мы получаем пароль и никнайм, то мы создаем в базе пользователя с такими данными
+        else if(cloudMessage instanceof PasswordMessage passwordMessage){
+            //здесь реализуем логику обработки чтения пароля и ника, делим строку по символу #
+            String[] strings = passwordMessage.getPassword().split("#");
+            //добавляем пользователя в бд
+            clientDB.insertUserNickAndPass(strings[0],strings[1]);
+        }
+
 
     }
 }

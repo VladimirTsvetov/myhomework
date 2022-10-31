@@ -3,8 +3,8 @@ package com.geekbrains.netty.serial;
 import java.sql.*;
 
 public class ClientDB {
-    private static Connection connection;
-    private static Statement statement;
+    private  Connection connection;
+    private  Statement statement;
 
     public ClientDB(){
         try {
@@ -17,11 +17,11 @@ public class ClientDB {
         }
     }
 
-    public static void connect() throws SQLException {
+    public  void connect() throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:javadb.db");
         statement = connection.createStatement();
     }
-    public static void disconnect() {
+    public  void disconnect() {
         try {
             if (connection != null) {
                 connection.close();
@@ -38,7 +38,7 @@ public class ClientDB {
         }
     }
 
-    private static void createTableEx() throws SQLException {
+    private  void createTableEx() throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS clients (\n" +
                 " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 " nick TEXT,\n" +
@@ -46,7 +46,7 @@ public class ClientDB {
                 " );");
     }
 
-    private static void insertUserNickAndPass(String user_nick, String user_pass) throws SQLException {
+    public  void insertUserNickAndPass(String user_nick, String user_pass) throws SQLException {
 
         int res = statement.executeUpdate("INSERT INTO clients (nick, pass) VALUES ('" + user_nick + "','"
             + user_pass + "');");
@@ -57,7 +57,7 @@ public class ClientDB {
 
     }
 
-    private static void readUserNickAndPass() throws SQLException {
+    public  void readUserNickAndPass() throws SQLException {
         try (ResultSet rs = statement.executeQuery("SELECT * FROM clients;")) {
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + " " + rs.getString("nick") + " " +

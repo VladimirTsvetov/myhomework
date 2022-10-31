@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekbrains.sep22.geekcloudclient.CloudMainController">
@@ -10,6 +11,7 @@
     <ListView fx:id="serverView" layoutX="355.0" layoutY="35.0" prefHeight="372.0" prefWidth="252.0" />
     <Button layoutX="299.0" layoutY="111.0" mnemonicParsing="false" onAction="#sendToServer" prefHeight="36.0" prefWidth="37.0" text="&gt;" />
     <Button layoutX="299.0" layoutY="162.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="36.0" prefWidth="37.0" text="&lt;" />
-   <PasswordField fx:id="passwordField" layoutX="29.0" layoutY="426.0" prefHeight="26.0" prefWidth="252.0"  onAction = "#passConfirm"/>
-   <Button fx:id="passConfirm" layoutX="291.0" layoutY="427.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
+   <PasswordField fx:id="passwordField" layoutX="29.0" layoutY="426.0" onAction="#passConfirm" prefHeight="26.0" prefWidth="252.0" promptText="set password" />
+   <Button fx:id="passConfirm" layoutX="523.0" layoutY="426.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
+   <TextField fx:id="nicknameField" layoutX="299.0" layoutY="427.0" prefHeight="26.0" prefWidth="215.0" promptText="set nickname" />
 </AnchorPane>
